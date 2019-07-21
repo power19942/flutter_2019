@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-
+import 'package:flutter/cupertino.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
@@ -12,6 +12,7 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     
     return transactions.isEmpty
         ? LayoutBuilder(builder: (ctx, BoxConstraints constraints) {
             return Column(
@@ -57,7 +58,14 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),
                   ),
-                  trailing: IconButton(
+                  trailing: MediaQuery.of(context).size.width > 360 ? 
+                  FlatButton.icon(
+                    icon: Icon(Icons.delete),
+                    label: Text('Delete'),
+                    textColor: Theme.of(context).errorColor,
+                    onPressed: () => deleteTx(transactions[index].id),
+                  )
+                  : IconButton(
                     icon: Icon(Icons.delete),
                     color: Theme.of(context).errorColor,
                     onPressed: () => deleteTx(transactions[index].id),
