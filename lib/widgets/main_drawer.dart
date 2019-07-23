@@ -37,7 +37,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: (){
-              Navigator.of(context).pushNamed(FiltersScreen.routeName);
+              Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
             },
             leading: Icon(
               Icons.search,
